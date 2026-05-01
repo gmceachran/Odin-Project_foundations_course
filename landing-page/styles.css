@@ -1,0 +1,285 @@
+/* Odin landing page — colors & type per style guide */
+
+:root {
+  --dark: #1f2937;
+  --hero-light: #f9faf8;
+  --muted: #e5e7eb;
+  --accent: #3882f6;
+  /* Fixed gutter — % was relative to viewport and felt too wide */
+  --gutter: clamp(1rem, 3vw, 1.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Roboto, system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--dark);
+}
+
+/* Body wrapper grows so the footer stays at the bottom of the viewport when content is short */
+.body {
+  flex: 1 0 auto;
+}
+
+.header,
+.hero {
+  flex-shrink: 0;
+  background-color: var(--dark);
+  color: var(--hero-light);
+}
+
+.header-inner,
+.hero-inner,
+.info,
+.cta-section {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* Header */
+.header {
+  padding: 1rem 0;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header-logo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--hero-light);
+}
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.header-nav a {
+  font-size: 18px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.header-nav a:hover {
+  color: var(--hero-light);
+}
+
+/* Hero */
+.hero {
+  padding: 5rem 0 6rem;
+}
+
+.hero-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.hero-copy {
+  flex: 1 1 320px;
+  max-width: 480px;
+}
+
+.hero-title {
+  margin: 0 0 1rem;
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--hero-light);
+}
+
+.hero-subtext {
+  margin: 0 0 1.25rem;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.hero-placeholder {
+  flex: 1 1 280px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6b7280;
+  color: var(--hero-light);
+  font-size: 18px;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.75rem;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--hero-light);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+/* Information section */
+.info {
+  padding: 3.5rem var(--gutter) 5rem;
+  background-color: #fff;
+}
+
+.info-heading {
+  margin: 0 0 3rem;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--dark);
+  text-align: center;
+}
+
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.info-card {
+  flex: 0 1 160px;
+  text-align: center;
+}
+
+.info-card-frame {
+  height: 160px;
+  border: 4px solid var(--accent);
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.info-card-caption {
+  margin: 0.75rem 0 0;
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* Quote — full-width band; text width matches other sections */
+.quote-section {
+  width: 100%;
+  padding: 5.5rem var(--gutter);
+  background-color: var(--muted);
+}
+
+.quote {
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.quote p {
+  margin: 0 0 1rem;
+  font-size: 36px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.25;
+}
+
+.quote-attribution {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  font-style: normal;
+  text-align: right;
+  color: var(--dark);
+}
+
+/* CTA */
+.cta-section {
+  padding: 5rem var(--gutter) 5.5rem;
+  background-color: #fff;
+}
+
+.cta-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2.5rem clamp(2rem, 8vw, 5.5rem);
+  background-color: var(--accent);
+  border-radius: 12px;
+  color: var(--hero-light);
+}
+
+.cta-copy {
+  flex: 1 1 280px;
+}
+
+.cta-title {
+  margin: 0 0 0.25rem;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--hero-light);
+}
+
+.cta-subtext {
+  margin: 0;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.btn-cta {
+  flex-shrink: 0;
+  background-color: transparent;
+  color: var(--hero-light);
+  border: 2px solid var(--hero-light);
+  border-radius: 8px;
+}
+
+.btn-cta:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Footer — full viewport width; sits at the base of the page */
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  padding: 2.25rem var(--gutter);
+  background-color: var(--dark);
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+}

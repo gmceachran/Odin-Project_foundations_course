@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 16px;
+  font-family: system-ui, sans-serif;
+}
+
+.toolbar {
+  margin-bottom: 12px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  height: 960px;
+  outline: 1px solid #ccc;
+}
+
+.grid-square {
+  flex: none;
+}

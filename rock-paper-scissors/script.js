@@ -1,3 +1,12 @@
+const rockBtn = document.getElementById('rock');
+const paperBtn = document.getElementById('paper');
+const scissorsBtn = document.getElementById('scissors');
+const resultsDiv = document.getElementById('results');
+const scoreDiv = document.getElementById('score');
+const gameOverDiv = document.getElementById('game-over');
+
+let score = [0, 0];
+
 function capitalize(str) {
   if (!str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -8,55 +17,76 @@ function getComputerChoice(choices) {
   return choices[i];
 }
 
-function getUserChoice() {
-  return prompt('Rock, paper, or scissors?');
-}
-
 function getWinner(userChoice, computerChoice) {
-  if ((userChoice === 'rock' && computerChoice === 'scissors') || 
-      (userChoice === 'paper' && computerChoice === 'rock') || 
+  if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+      (userChoice === 'paper' && computerChoice === 'rock') ||
       (userChoice === 'scissors' && computerChoice === 'paper')) {
-    console.log(`You win! ${capitalize(userChoice)} beats ${computerChoice}!`);
     return 'player won';
   } else if (userChoice === computerChoice) {
-    console.log("It's a draw!");
     return 'draw';
   } else {
-    console.log(`You lose! ${capitalize(computerChoice)} beats ${userChoice}!`);
-    return 'player lost'
-  };
+    return 'player lost';
+  }
 }
 
-function playRound(score) {
-  const choices = ['rock', 'paper', 'scissors'];
-  const userChoice = (getUserChoice() ?? '').trim().toLowerCase();
-  const computerChoice = getComputerChoice(choices);
+function updateScoreDisplay() {
+  scoreDiv.textContent = 'You: ' + score[0] + ' — Computer: ' + score[1];
+}
 
-  let result = getWinner(userChoice, computerChoice);
+function setChoiceButtonsDisabled(disabled) {
+  rockBtn.disabled = disabled;
+  paperBtn.disabled = disabled;
+  scissorsBtn.disabled = disabled;
+}
+
+function checkGameOver() {
+  if (score[0] >= 5) {
+    gameOverDiv.textContent = 'You win the game!';
+    setChoiceButtonsDisabled(true);
+    return true;
+  }
+  if (score[1] >= 5) {
+    gameOverDiv.textContent = 'You lose the game!';
+    setChoiceButtonsDisabled(true);
+    return true;
+  }
+  return false;
+}
+
+function playRound(playerSelection) {
+  if (rockBtn.disabled) {
+    return;
+  }
+
+  const choices = ['rock', 'paper', 'scissors'];
+  const userChoice = playerSelection;
+  const computerChoice = getComputerChoice(choices);
+  const result = getWinner(userChoice, computerChoice);
 
   if (result === 'player won') {
+    resultsDiv.textContent =
+      'You win! ' + capitalize(userChoice) + ' beats ' + computerChoice + '!';
     score[0] += 1;
-  } else if (result === 'player lost') {
-    score[1] += 1;
-  };
-
-  return score;
-}
-
-function announceWinner(score) {
-  if (score[0] > score[1]) {
-    console.log('You win the game!')
-  } else if (score[0] < score[1]) {
-    console.log('You lose the game!')
+  } else if (result === 'draw') {
+    resultsDiv.textContent = "It's a draw!";
   } else {
-    console.log("It's a draw!")
-  };
+    resultsDiv.textContent =
+      'You lose! ' + capitalize(computerChoice) + ' beats ' + userChoice + '!';
+    score[1] += 1;
+  }
+
+  updateScoreDisplay();
+  checkGameOver();
 }
 
-function playGame() {
-  let score = [0, 0];
-  for (let i = 0; i < 5; i++) { score = playRound(score); }
-  announceWinner(score);
-}
+rockBtn.addEventListener('click', function () {
+  playRound('rock');
+});
+paperBtn.addEventListener('click', function () {
+  playRound('paper');
+});
+scissorsBtn.addEventListener('click', function () {
+  playRound('scissors');
+});
 
-playGame();
+updateScoreDisplay();

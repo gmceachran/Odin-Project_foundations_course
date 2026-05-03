@@ -21,10 +21,10 @@ main {
   flex: 1;
 }
 
-/* Shared content width */
+/* Shared content width (quote section is full-bleed; see .quote-container) */
 .dark-top .hero,
 header,
-main > section {
+main > section:not(.quote-container) {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -166,15 +166,19 @@ nav ul {
   color: #4b5563;
 }
 
-/* Quote */
+/* Quote — full-bleed gray; blockquote uses same box model as other sections (1200px incl. side padding) */
 .quote-container {
+  width: 100%;
   background-color: #e5e7eb;
   padding-top: 96px;
   padding-bottom: 96px;
 }
 
 .quote-container blockquote {
-  margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 160px;
+  padding-right: 160px;
 }
 
 .quote {
@@ -244,8 +248,8 @@ nav ul {
   cursor: pointer;
 }
 
-/* Footer */
-footer {
+/* Site footer only — blockquotes may use <footer> for attribution; must not match this rule */
+body > footer {
   margin-top: auto;
   padding: 32px 24px;
   text-align: center;

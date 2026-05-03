@@ -1,0 +1,84 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --page-max: 1200px;
+  --page-pad-inline: clamp(16px, 8vw, 160px);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(100%, var(--page-max));
+  margin-inline: auto;
+  padding-block: 1rem;
+  padding-inline: var(--page-pad-inline);
+}
+
+nav ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+main {
+  flex: 1;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: min(100%, var(--page-max));
+  margin-inline: auto;
+  padding-inline: var(--page-pad-inline);
+}
+
+.hero-container {
+  flex: 1 1 280px;
+  max-width: 420px;
+  min-width: 0;
+}
+
+.hero > img {
+  flex: 1 1 240px;
+  max-width: min(520px, 100%);
+  min-width: 0;
+}
+
+.info-title {
+  text-align: flex-beginning;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card-text {
+  max-width: 200px;
+  text-align: center;
+}
